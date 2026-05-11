@@ -3,7 +3,10 @@ const qrcode = require('qrcode-terminal');
 
 const client = new Client({
     authStrategy: new LocalAuth(),
-    puppeteer: { args: ['--no-sandbox'] }
+    puppeteer: {
+        executablePath: '/run/current-system/sw/bin/chromium',
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+    }
 });
 
 // Estado de la faction (editable con comandos)
