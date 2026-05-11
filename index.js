@@ -15,6 +15,25 @@ const client = new Client({
     }
 });
 
+client.on('qr', qr => {
+    console.log('=== ESCANEA ESTE QR ===');
+    qrcode.generate(qr, { small: false }); // QR más grande
+    console.log('=== QR ARRIBA ===');
+    console.log('Tienes 60 segundos para escanearlo');
+});
+
+client.on('authenticated', () => {
+    console.log('✅ AUTENTICADO CORRECTAMENTE');
+});
+
+client.on('auth_failure', msg => {
+    console.log('❌ Error de autenticación:', msg);
+});
+
+client.on('ready', () => {
+    console.log('🤖 Bot listo y funcionando!');
+});
+
 // Estado de la faction (editable con comandos)
 let faction = {
     nombre: "TuFaction",
